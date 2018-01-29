@@ -84,4 +84,4 @@ bool tembroActivated = 0;
 
 long last_encoder = 0;
 byte selector = 1;
-byte relayDelayVal = 0;
+
