@@ -61,8 +61,8 @@ void main_screen(bool mode) {
   u8g2.firstPage();
   do {
 
-    if (!mode)softPrint(30, 7, 1, 3);
-    else softPrint(30, 7, 1, 4);
+    if (!mode)softPrint(30, 7, 1, VOLUME);
+    else softPrint(30, 7, 1, SET_BALANCE);
     u8g2.drawHLine(0, 9, 127);
     u8g2.setCursor(0, 30);
     u8g2.print("L:");
@@ -77,15 +77,15 @@ void main_screen(bool mode) {
     u8g2.print(volumeR - 128); u8g2.print("dB");
 
     if (!mode) {
-      softPrint(5, 63, 1, 5);
-      softPrint(70, 63, 1, 6);
-      if (selector == 4)softPrint(35, 63, 1, 17);
+      softPrint(5, 63, 1, INPUTS);
+      softPrint(70, 63, 1, OUTPUT_OFF);
+      if (selector == 4)softPrint(35, 63, 1, USB);
       else {
         u8g2.setCursor(35, 63);
         u8g2.print(selector);
       }
     }
-    else softPrint(5, 63, 1, 0);
+    else softPrint(5, 63, 1, EXIT);
   } while ( u8g2.nextPage() );
 
 }
@@ -208,7 +208,7 @@ void selectInput() {
 
     u8g2.firstPage();
     do {
-      softPrint(10, 7, 1, 19);
+      softPrint(10, 7, 1, INPUTS_SELECTOR);
       u8g2.drawHLine(0, 9, 127);
 
       for (byte i = 0; i < INPUTS_NUMBER; i++) {
@@ -246,14 +246,14 @@ void relayDelay() {
 
     u8g2.firstPage();
     do {
-      softPrint(10, 7, 1, 1);
+      softPrint(10, 7, 1, DELAY_IN_TURN_ON);
       u8g2.drawHLine(0, 9, 127);
       u8g2.drawFrame(24, 17, 80, 30);
       u8g2.setCursor(40, 38);
       u8g2.print(del);
 
-      softPrint(52, 38, 1, 18);
-      softPrint(5, 63, 1, 0);
+      softPrint(52, 38, 1, SECONDS);
+      softPrint(5, 63, 1, EXIT);
     } while ( u8g2.nextPage() );
 
     del += getEncoder();
@@ -287,7 +287,7 @@ void switchOff() {
     u8g2.firstPage();
     do {
       u8g2.setDrawColor(1);
-      softPrint(5, 30, 1, 2);
+      softPrint(5, 30, 1, BYE);
 
     } while ( u8g2.nextPage() );
     j -= 2;
@@ -323,8 +323,8 @@ void tembroScreen() {
   do {
     u8g2.firstPage();
     do {
-      softPrint(7, 7, 1, 20);
-      tembroOn ? softPrint(75, 7, 1, 25) : softPrint(75, 7, 1, 26);
+      softPrint(7, 7, 1, TEMBRO);
+      tembroOn ? softPrint(75, 7, 1, TURNED_ON) : softPrint(75, 7, 1, TURNED_OFF);
       u8g2.drawHLine(0, 9, 127);
 
       for (byte i = 1; i <= TEMBRO_MENU_LINES; i++) {
@@ -379,7 +379,7 @@ void tembroTune() {
   do {
     u8g2.firstPage();
     do {
-      softPrint(0, 8, 1, 30);
+      softPrint(0, 8, 1, TEMBRO_ADJUST);
       u8g2.drawHLine(0, 10, 127);
 
       for (byte i = 1; i <= 3; i++) {
